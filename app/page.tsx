@@ -71,7 +71,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm uppercase">Venue</p>
-                  <p className="text-white font-semibold">R.V. College of Engineering (RVCE), Bangalore</p>
+                  <p className="text-white font-semibold">R.V. College of Engineering (RVCE), Bengaluru</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

@@ -244,7 +244,7 @@ export default function PassPage() {
               <div className="grid md:grid-cols-2 gap-3 text-white">
                 <p><span className="text-gray-400">📅 Date:</span> 07 February 2026</p>
                 <p><span className="text-gray-400">⏱️ Time:</span> 8 Hours</p>
-                <p><span className="text-gray-400">📍 Venue:</span> R.V. College of Engineering (RVCE), Bangalore</p>
+                <p><span className="text-gray-400">📍 Venue:</span> R.V. College of Engineering (RVCE), Bengaluru</p>
                 <p><span className="text-gray-400">💰 Prize Pool:</span> ₹10,000</p>
               </div>
             </div>

@@ -376,7 +376,7 @@ export default function RegisterPage() {
                   </div>
                   <div>
                     <p className="text-gray-400 text-xs uppercase">Venue</p>
-                    <p className="text-white text-sm font-semibold">R.V. College of Engineering (RVCE), Bangalore</p>
+                    <p className="text-white text-sm font-semibold">R.V. College of Engineering (RVCE), Bengaluru</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
