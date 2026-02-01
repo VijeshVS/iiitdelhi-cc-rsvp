@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { getPassDetails, type PassDetailsResponse } from '@/app/actions/passDetails';
 import Link from 'next/link';
+import Image from 'next/image';
 import { QRCodeSVG } from 'qrcode.react';
 
 export default function PassPage() {
@@ -48,8 +49,12 @@ export default function PassPage() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6">
+          <div className="flex items-center justify-center gap-6 mb-4">
+            <Image src="/rvce.png" alt="RVCE Logo" width={80} height={80} className="object-contain" />
+            <Image src="/cc.png" alt="Coding Club Logo" width={80} height={80} className="object-contain" />
+          </div>
           <span className="inline-block bg-accent-gold text-bg-dark px-6 py-2 text-sm font-bold uppercase tracking-wider mb-4">
-            IIITDELHI X Coding Club RVCE RSVP
+            IIIT DELHI X Coding Club RVCE RSVP
           </span>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-white">CONFIRM YOUR </span>

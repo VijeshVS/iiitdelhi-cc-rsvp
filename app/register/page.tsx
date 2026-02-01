@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { createTeamRegistration, type TeamRegistrationInput } from '@/app/actions/teamRegistration';
 import { ITeamMember } from '@/models/TeamRegistration';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState<TeamRegistrationInput>({
@@ -49,7 +50,7 @@ export default function RegisterPage() {
     const result = await createTeamRegistration(formData);
 
     if (result.success) {
-      setMessage({ type: 'success', text: 'Registration successful! A confirmation email has been sent to your email address.' });
+      setMessage({ type: 'success', text: 'Registration successful! You can check your pass details on the same website' });
       setFormData({
         teamLeadFullName: '',
         email: '',
@@ -132,8 +133,12 @@ export default function RegisterPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-6">
+          <div className="flex items-center justify-center gap-6 mb-4">
+            <Image src="/rvce.png" alt="RVCE Logo" width={80} height={80} className="object-contain" />
+            <Image src="/cc.png" alt="Coding Club Logo" width={80} height={80} className="object-contain" />
+          </div>
           <span className="inline-block bg-accent-gold text-bg-dark px-6 py-2 text-sm font-bold uppercase tracking-wider mb-4">
-            IIITDELHI X Coding Club RVCE RSVP
+            IIIT DELHI X Coding Club RVCE RSVP
           </span>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-white">CONFIRM YOUR </span>

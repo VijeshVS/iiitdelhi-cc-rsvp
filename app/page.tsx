@@ -1,17 +1,20 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-bg-dark flex items-center justify-center px-4 py-12">
       <div className="max-w-4xl w-full">
-        {/* Header Badge */}
         <div className="text-center mb-6">
+          <div className="flex items-center justify-center gap-6 mb-4">
+            <Image src="/rvce.png" alt="RVCE Logo" width={80} height={80} className="object-contain" />
+            <Image src="/cc.png" alt="Coding Club Logo" width={80} height={80} className="object-contain" />
+          </div>
           <span className="inline-block bg-accent-gold text-bg-dark px-6 py-2 text-sm font-bold uppercase tracking-wider">
-            IIITDELHI X Coding Club RVCE RSVP
+            IIIT DELHI X Coding Club RVCE RSVP
           </span>
         </div>
 
-        {/* Hero Section */}
         <div className="text-center mb-8">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
             <span className="text-white">CONFIRM YOUR </span>
