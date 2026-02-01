@@ -94,16 +94,16 @@ export default function PassPage() {
               Retrieve Your Pass
             </h2>
             <p className="text-gray-400 text-center mb-6">
-              Enter your Name or Email to get your event pass
+              Enter your Email to get your pass details
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-gray-400 text-sm mb-2">Name or Email *</label>
+                <label className="block text-gray-400 text-sm mb-2">Email *</label>
                 <input
                   type="email"
                   required
-                  placeholder="Enter your Name or registered Email"
+                  placeholder="Enter your registered Email"
                   className="w-full px-4 py-3 bg-surface-dark border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-accent-gold transition-colors"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
