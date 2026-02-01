@@ -416,13 +416,28 @@ export default function RegisterPage() {
 
             {/* Contact */}
             <div className="bg-surface-light border border-gray-700 rounded-lg p-6 text-center">
-              <p className="text-gray-400 text-xs uppercase mb-2">For Queries</p>
-              <a
-                href="tel:9021479745"
-                className="text-accent-gold text-xl font-bold hover:text-accent-hover transition-colors"
-              >
-                9021479745
-              </a>
+              <p className="text-gray-400 text-xs uppercase mb-3">For Queries</p>
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <div>
+                  <p className="text-gray-300 text-xs mb-1">Samkit Samsukha</p>
+                  <a
+                    href="tel:9239089089"
+                    className="text-accent-gold text-lg font-bold hover:text-accent-hover transition-colors"
+                  >
+                    9239089089
+                  </a>
+                </div>
+                <div className="hidden sm:block w-px h-10 bg-gray-700"></div>
+                <div>
+                  <p className="text-gray-300 text-xs mb-1">Vijesh</p>
+                  <a
+                    href="tel:7795639998"
+                    className="text-accent-gold text-lg font-bold hover:text-accent-hover transition-colors"
+                  >
+                    7795639998
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
