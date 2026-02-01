@@ -266,15 +266,16 @@ export default function RegisterPage() {
                     <select
                       name="year"
                       required
-                      className="w-full px-4 py-3 bg-surface-dark border border-gray-700 rounded-lg text-white focus:outline-none focus:border-accent-gold transition-colors appearance-none cursor-pointer"
+                      className="w-full px-4 py-3 bg-surface-dark border border-gray-700 rounded-lg text-white focus:outline-none focus:border-accent-gold transition-colors appearance-none cursor-pointer [&>option]:bg-surface-dark [&>option]:text-white"
+                      style={{ colorScheme: 'dark' }}
                       value={formData.year}
                       onChange={handleInputChange}
                     >
-                      <option value="1st">1st Year</option>
-                      <option value="2nd">2nd Year</option>
-                      <option value="3rd">3rd Year</option>
-                      <option value="4th">4th Year</option>
-                      <option value="PG">PG</option>
+                      <option value="1st" className="bg-surface-dark text-white">1st Year</option>
+                      <option value="2nd" className="bg-surface-dark text-white">2nd Year</option>
+                      <option value="3rd" className="bg-surface-dark text-white">3rd Year</option>
+                      <option value="4th" className="bg-surface-dark text-white">4th Year</option>
+                      <option value="PG" className="bg-surface-dark text-white">PG</option>
                     </select>
                   </div>
                 </div>
@@ -299,15 +300,16 @@ export default function RegisterPage() {
                       <select
                         name="numberOfTeamMembers"
                         required
-                        className="w-full px-4 py-3 bg-surface-dark border border-gray-700 rounded-lg text-white focus:outline-none focus:border-accent-gold transition-colors appearance-none cursor-pointer"
+                        className="w-full px-4 py-3 bg-surface-dark border border-gray-700 rounded-lg text-white focus:outline-none focus:border-accent-gold transition-colors appearance-none cursor-pointer [&>option]:bg-surface-dark [&>option]:text-white"
+                        style={{ colorScheme: 'dark' }}
                         value={formData.numberOfTeamMembers}
                         onChange={handleInputChange}
                       >
-                        <option value="1">Solo (1 member)</option>
-                        <option value="2">2 Members</option>
-                        <option value="3">3 Members</option>
-                        <option value="4">4 Members</option>
-                        <option value="5">5 Members</option>
+                        <option value="1" className="bg-surface-dark text-white">Solo (1 member)</option>
+                        <option value="2" className="bg-surface-dark text-white">2 Members</option>
+                        <option value="3" className="bg-surface-dark text-white">3 Members</option>
+                        <option value="4" className="bg-surface-dark text-white">4 Members</option>
+                        <option value="5" className="bg-surface-dark text-white">5 Members</option>
                       </select>
                       <p className="text-gray-500 text-xs mt-1">Maximum 5 members per team</p>
                     </div>
