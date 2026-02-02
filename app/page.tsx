@@ -62,7 +62,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm uppercase">Duration</p>
-                  <p className="text-white font-semibold">8 Hours</p>
+                  <p className="text-white font-semibold">6 Hours</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
