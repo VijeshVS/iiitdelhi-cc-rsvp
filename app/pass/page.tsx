@@ -243,7 +243,8 @@ export default function PassPage() {
               <h3 className="text-accent-gold text-xl font-bold mb-4 uppercase">Event Details</h3>
               <div className="grid md:grid-cols-2 gap-3 text-white">
                 <p><span className="text-gray-400">📅 Date:</span> 07 February 2026</p>
-                <p><span className="text-gray-400">⏱️ Time:</span> 6 Hours</p>
+                <p><span className="text-gray-400">🕐 Timing:</span> 10:00 AM - 4:00 PM</p>
+                <p><span className="text-gray-400">⏱️ Duration:</span> 6 Hours</p>
                 <p><span className="text-gray-400">📍 Venue:</span> R.V. College of Engineering (RVCE), Bengaluru</p>
                 <p><span className="text-gray-400">💰 Prize Pool:</span> ₹10,000</p>
               </div>
