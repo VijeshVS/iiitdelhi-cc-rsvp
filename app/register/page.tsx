@@ -363,6 +363,15 @@ export default function RegisterPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-accent-gold text-sm">⏰</span>
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-xs uppercase">Reporting Time</p>
+                    <p className="text-white text-sm font-semibold">9:00 AM</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center flex-shrink-0">
                     <span className="text-accent-gold text-sm">🕐</span>
                   </div>
                   <div>
