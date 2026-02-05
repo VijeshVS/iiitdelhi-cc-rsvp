@@ -154,7 +154,7 @@ export default function RegisterPage() {
               href="/register"
               className="bg-accent-gold text-bg-dark px-8 py-3 rounded-lg font-bold hover:bg-accent-hover transition-all duration-300 text-center uppercase"
             >
-              New Registration
+              Confirmation Form
             </Link>
             <Link
               href="/pass"
@@ -170,7 +170,17 @@ export default function RegisterPage() {
           <div className="flex items-center gap-2">
             <span className="text-red-500 text-xl">⚠</span>
             <p className="text-red-400 font-semibold uppercase text-sm">
-              Only Team Leaders Fill The Details To Get The Pass
+              Only Team Leaders Fill The Details To Get The Pass. 
+            </p>
+          </div>
+        </div>
+
+        {/* Info Banner */}
+        <div className="mb-6 bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded max-w-3xl mx-auto">
+          <div className="flex items-center gap-2">
+            <span className="text-yellow-500 text-xl">💡</span>
+            <p className="text-yellow-400 font-semibold text-sm">
+              Please note that only one pass/QR is sufficient for the entire team.
             </p>
           </div>
         </div>

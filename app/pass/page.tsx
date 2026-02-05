@@ -70,7 +70,7 @@ export default function PassPage() {
               href="/register"
               className="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-bg-dark transition-all duration-300 text-center uppercase"
             >
-              New Registration
+              Confirmation Form
             </Link>
             <Link
               href="/pass"

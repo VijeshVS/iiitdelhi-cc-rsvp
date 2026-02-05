@@ -31,7 +31,7 @@ export default function Home() {
             href="/register"
             className="bg-accent-gold text-bg-dark px-8 py-4 rounded-lg font-bold text-lg hover:bg-accent-hover transition-all duration-300 text-center uppercase"
           >
-            New Registration
+            Confirmation Form
           </Link>
           <Link
             href="/pass"
