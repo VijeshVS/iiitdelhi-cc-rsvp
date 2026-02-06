@@ -39,7 +39,7 @@ export default function PassPage() {
         hour: '2-digit',
         minute: '2-digit',
       });
-    } catch (error) {
+    } catch {
       return 'Invalid Date';
     }
   };
@@ -126,7 +126,7 @@ export default function PassPage() {
             </form>
 
             <div className="mt-8 text-center">
-              <p className="text-gray-400 mb-3">Haven't registered yet?</p>
+              <p className="text-gray-400 mb-3">Haven&apos;t registered yet?</p>
               <Link
                 href="/register"
                 className="text-accent-gold hover:text-accent-hover font-semibold inline-flex items-center gap-2"
@@ -155,6 +155,13 @@ export default function PassPage() {
                 </div>
               </div>
               <p className="text-bg-dark text-sm font-mono">{passDetails.passId}</p>
+              <div className="mt-3">
+                <span className={`inline-block px-4 py-1 rounded-full text-sm font-bold ${
+                  passDetails.entered ? 'bg-green-600 text-white' : 'bg-bg-dark/30 text-bg-dark'
+                }`}>
+                  {passDetails.entered ? '✅ Entered' : '⏳ Not Entered Yet'}
+                </span>
+              </div>
             </div>
 
             {/* Team Information */}
@@ -200,6 +207,12 @@ export default function PassPage() {
                   <p className="text-gray-400 text-xs uppercase mb-1">Year</p>
                   <p className="text-white font-semibold">{passDetails.year}</p>
                 </div>
+                <div className="bg-surface-dark border border-gray-700 rounded-lg p-4">
+                  <p className="text-gray-400 text-xs uppercase mb-1">Entry Status</p>
+                  <p className={`font-semibold ${passDetails.entered ? 'text-green-400' : 'text-yellow-400'}`}>
+                    {passDetails.entered ? '✅ Entered' : '⏳ Pending'}
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -230,6 +243,12 @@ export default function PassPage() {
                         <div>
                           <p className="text-gray-400 text-xs uppercase">College</p>
                           <p className="text-white">{member.college}</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-400 text-xs uppercase">Entry Status</p>
+                          <p className={`font-semibold ${member.entered ? 'text-green-400' : 'text-yellow-400'}`}>
+                            {member.entered ? '✅ Entered' : '⏳ Pending'}
+                          </p>
                         </div>
                       </div>
                     </div>

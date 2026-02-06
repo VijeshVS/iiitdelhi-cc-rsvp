@@ -125,12 +125,12 @@ export async function createTeamRegistration(
         email: input.email,
       },
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error creating team registration:', error);
     return {
       success: false,
       message: 'Failed to register team',
-      error: error.message || 'UNKNOWN_ERROR',
+      error: error instanceof Error ? error.message : 'UNKNOWN_ERROR',
     };
   }
 }

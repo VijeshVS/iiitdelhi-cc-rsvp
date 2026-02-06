@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { createTeamRegistration, type TeamRegistrationInput } from '@/app/actions/teamRegistration';
-import { ITeamMember } from '@/models/TeamRegistration';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -33,7 +32,7 @@ export default function RegisterPage() {
     }
   };
 
-  const handleTeamMemberChange = (index: number, field: keyof ITeamMember, value: string) => {
+  const handleTeamMemberChange = (index: number, field: 'fullName' | 'email' | 'phone' | 'college', value: string) => {
     const updatedMembers = [...(formData.teamMembers || [])];
     if (!updatedMembers[index]) {
       updatedMembers[index] = { fullName: '', email: '', phone: '', college: '' };

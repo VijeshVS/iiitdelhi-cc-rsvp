@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Prepare Excel data
-    const excelData: any[] = [];
+    const excelData: (string | boolean)[][] = [];
 
     // Add header row
     excelData.push([
@@ -43,6 +43,7 @@ export async function GET(request: NextRequest) {
       "College",
       "Year",
       "Role",
+      "Entered",
     ]);
 
     // Add data rows
@@ -57,11 +58,12 @@ export async function GET(request: NextRequest) {
         team.college,
         team.year,
         "Team Leader",
+        team.entered ? "Yes" : "No",
       ]);
 
       // Add team members rows
       if (team.teamMembers && team.teamMembers.length > 0) {
-        team.teamMembers.forEach((member: any) => {
+        team.teamMembers.forEach((member) => {
           excelData.push([
             team.teamName,
             team.passId,
@@ -71,6 +73,7 @@ export async function GET(request: NextRequest) {
             member.college,
             "-",
             "Member",
+            member.entered ? "Yes" : "No",
           ]);
         });
       }
@@ -90,6 +93,7 @@ export async function GET(request: NextRequest) {
       { wch: 25 }, // College
       { wch: 10 }, // Year
       { wch: 15 }, // Role
+      { wch: 10 }, // Entered
     ];
 
     // Add worksheet to workbook

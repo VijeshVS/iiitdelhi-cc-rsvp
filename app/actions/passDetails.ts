@@ -1,7 +1,7 @@
 'use server';
 
 import MongoDBConnection from '@/lib/mongodb';
-import TeamRegistration, { ITeamRegistration } from '@/models/TeamRegistration';
+import TeamRegistration from '@/models/TeamRegistration';
 
 export interface PassDetailsResponse {
   success: boolean;
@@ -14,12 +14,14 @@ export interface PassDetailsResponse {
     phone: string;
     college: string;
     year: string;
+    entered: boolean;
     numberOfTeamMembers: number;
     teamMembers?: {
       fullName: string;
       email: string;
       phone: string;
       college: string;
+      entered: boolean;
     }[];
     createdAt: string; // ISO date string for serialization
   };
@@ -55,11 +57,12 @@ export async function getPassDetails(email: string): Promise<PassDetailsResponse
     }
 
     // Format team members without _id fields
-    const teamMembers = registration.teamMembers?.map((member: any) => ({
+    const teamMembers = registration.teamMembers?.map((member) => ({
       fullName: member.fullName,
       email: member.email,
       phone: member.phone,
       college: member.college,
+      entered: member.entered ?? false,
     })) || [];
 
     // Return pass details with serializable data
@@ -74,17 +77,18 @@ export async function getPassDetails(email: string): Promise<PassDetailsResponse
         phone: registration.phone,
         college: registration.college,
         year: registration.year,
+        entered: registration.entered ?? false,
         numberOfTeamMembers: registration.numberOfTeamMembers,
         teamMembers,
         createdAt: new Date(registration.createdAt).toISOString(),
       },
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error retrieving pass details:', error);
     return {
       success: false,
       message: 'Failed to retrieve pass details',
-      error: error.message || 'UNKNOWN_ERROR',
+      error: error instanceof Error ? error.message : 'UNKNOWN_ERROR',
     };
   }
 }

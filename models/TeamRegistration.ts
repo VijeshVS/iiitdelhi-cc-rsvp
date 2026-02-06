@@ -6,6 +6,7 @@ export interface ITeamMember {
   email: string;
   phone: string;
   college: string;
+  entered?: boolean;
 }
 
 export interface ITeamRegistration extends Document {
@@ -17,6 +18,7 @@ export interface ITeamRegistration extends Document {
   teamName: string;
   numberOfTeamMembers: number;
   teamMembers?: ITeamMember[];
+  entered?: boolean;
   passId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -44,6 +46,10 @@ const TeamMemberSchema = new Schema<ITeamMember>({
     type: String,
     required: true,
     trim: true,
+  },
+  entered: {
+    type: Boolean,
+    default: false,
   },
 }, { _id: false });
 
@@ -91,6 +97,10 @@ const TeamRegistrationSchema = new Schema<ITeamRegistration>(
     teamMembers: {
       type: [TeamMemberSchema],
       default: [],
+    },
+    entered: {
+      type: Boolean,
+      default: false,
     },
     passId: {
       type: String,
