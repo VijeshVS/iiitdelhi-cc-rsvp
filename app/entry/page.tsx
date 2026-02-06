@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import {
   searchTeamForEntry,
-  markEntry,
   undoEntry,
   bulkMarkEntry,
   type TeamEntryData,
@@ -155,28 +154,6 @@ export default function EntryPage() {
     }
 
     setLoading(false);
-  };
-
-  const handleMarkEntry = async (personType: 'lead' | 'member', memberIndex?: number) => {
-    if (!teamData) return;
-    const key = personType === 'lead' ? 'lead' : `member-${memberIndex}`;
-    setActionLoading(key);
-    setSuccessMsg(null);
-
-    const result = await markEntry(teamData.passId, personType, memberIndex);
-
-    if (result.success) {
-      setSuccessMsg(result.message);
-      // Refresh data
-      const refreshed = await searchTeamForEntry(teamData.passId);
-      if (refreshed.success && refreshed.data) {
-        setTeamData(refreshed.data);
-      }
-    } else {
-      setError(result.message);
-    }
-
-    setActionLoading(null);
   };
 
   const handleUndoEntry = async (personType: 'lead' | 'member', memberIndex?: number) => {
@@ -499,50 +476,37 @@ export default function EntryPage() {
                   const key = 'lead';
                   return (
                     <div className={`bg-surface-dark border rounded-lg p-3 md:p-4 transition-all ${
-                      selected.has(key) ? 'border-accent-gold' : 'border-gray-700'
+                      selected.has(key) ? 'border-accent-gold' : teamData.entered ? 'border-green-800' : 'border-gray-700'
                     }`}>
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4">
-                        <div className="flex items-start gap-3 flex-1 min-w-0 w-full">
-                          {!teamData.entered && (
-                            <input
-                              type="checkbox"
-                              checked={selected.has(key)}
-                              onChange={(e) => toggleSelect(key, e.target.checked)}
-                              className="w-5 h-5 accent-accent-gold rounded shrink-0 mt-1"
-                            />
-                          )}
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 mb-1 flex-wrap">
-                              <span className={`w-3 h-3 rounded-full shrink-0 ${teamData.entered ? 'bg-green-500' : 'bg-gray-500'}`} />
-                              <p className="text-white text-base md:text-lg font-semibold break-words">{teamData.teamLeadFullName}</p>
-                              <span className="text-accent-gold text-[10px] md:text-xs font-bold uppercase bg-accent-gold/10 px-2 py-0.5 rounded">Lead</span>
-                              {teamData.entered && (
-                                <span className="text-green-400 text-[10px] md:text-xs font-bold uppercase bg-green-900/30 px-2 py-0.5 md:py-1 rounded">Entered</span>
-                              )}
-                            </div>
-                            <div className="space-y-0.5 text-xs md:text-sm">
-                              <p className="text-gray-400 break-all">📧 {teamData.email}</p>
-                              <p className="text-gray-400">📱 {teamData.phone}</p>
-                              <p className="text-gray-400 break-words">🏫 {teamData.college}</p>
-                            </div>
+                      <div className="flex items-start gap-3">
+                        <input
+                          type="checkbox"
+                          checked={teamData.entered || selected.has(key)}
+                          disabled={teamData.entered}
+                          onChange={(e) => toggleSelect(key, e.target.checked)}
+                          className="w-5 h-5 accent-accent-gold rounded shrink-0 mt-1"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1 flex-wrap">
+                            <span className={`w-3 h-3 rounded-full shrink-0 ${teamData.entered ? 'bg-green-500' : 'bg-gray-500'}`} />
+                            <p className="text-white text-base md:text-lg font-semibold break-words">{teamData.teamLeadFullName}</p>
+                            <span className="text-accent-gold text-[10px] md:text-xs font-bold uppercase bg-accent-gold/10 px-2 py-0.5 rounded">Lead</span>
+                            {teamData.entered && (
+                              <span className="text-green-400 text-[10px] md:text-xs font-bold uppercase bg-green-900/30 px-2 py-0.5 md:py-1 rounded">✅ Entered</span>
+                            )}
                           </div>
-                        </div>
-                        <div className="w-full sm:w-auto">
-                          {!teamData.entered ? (
-                            <button
-                              onClick={() => handleMarkEntry('lead')}
-                              disabled={actionLoading === 'lead'}
-                              className="bg-green-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs w-full sm:w-auto"
-                            >
-                              {actionLoading === 'lead' ? '...' : 'Mark Entry'}
-                            </button>
-                          ) : (
+                          <div className="space-y-0.5 text-xs md:text-sm">
+                            <p className="text-gray-400 break-all">📧 {teamData.email}</p>
+                            <p className="text-gray-400">📱 {teamData.phone}</p>
+                            <p className="text-gray-400 break-words">🏫 {teamData.college}</p>
+                          </div>
+                          {teamData.entered && (
                             <button
                               onClick={() => handleUndoEntry('lead')}
                               disabled={actionLoading === 'lead'}
-                              className="bg-red-600/80 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs w-full sm:w-auto"
+                              className="text-red-400 hover:text-red-300 text-[10px] md:text-xs font-bold uppercase mt-1.5 disabled:opacity-50"
                             >
-                              {actionLoading === 'lead' ? '...' : 'Undo'}
+                              {actionLoading === 'lead' ? '...' : 'Undo Entry'}
                             </button>
                           )}
                         </div>
@@ -558,51 +522,38 @@ export default function EntryPage() {
                     <div
                       key={member.index}
                       className={`bg-surface-dark border rounded-lg p-3 md:p-4 transition-all ${
-                        selected.has(key) ? 'border-accent-gold' : 'border-gray-700'
+                        selected.has(key) ? 'border-accent-gold' : member.entered ? 'border-green-800' : 'border-gray-700'
                       }`}
                     >
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4">
-                        <div className="flex items-start gap-3 flex-1 min-w-0 w-full">
-                          {!member.entered && (
-                            <input
-                              type="checkbox"
-                              checked={selected.has(key)}
-                              onChange={(e) => toggleSelect(key, e.target.checked)}
-                              className="w-5 h-5 accent-accent-gold rounded shrink-0 mt-1"
-                            />
-                          )}
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 mb-1 flex-wrap">
-                              <span className={`w-3 h-3 rounded-full shrink-0 ${member.entered ? 'bg-green-500' : 'bg-gray-500'}`} />
-                              <p className="text-white text-base md:text-lg font-semibold break-words">{member.fullName}</p>
-                              <span className="text-gray-500 text-[10px] md:text-xs">Member {member.index + 1}</span>
-                              {member.entered && (
-                                <span className="text-green-400 text-[10px] md:text-xs font-bold uppercase bg-green-900/30 px-2 py-0.5 md:py-1 rounded">Entered</span>
-                              )}
-                            </div>
-                            <div className="space-y-0.5 text-xs md:text-sm">
-                              <p className="text-gray-400 break-all">📧 {member.email}</p>
-                              <p className="text-gray-400">📱 {member.phone}</p>
-                              <p className="text-gray-400 break-words">🏫 {member.college}</p>
-                            </div>
+                      <div className="flex items-start gap-3">
+                        <input
+                          type="checkbox"
+                          checked={member.entered || selected.has(key)}
+                          disabled={member.entered}
+                          onChange={(e) => toggleSelect(key, e.target.checked)}
+                          className="w-5 h-5 accent-accent-gold rounded shrink-0 mt-1"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1 flex-wrap">
+                            <span className={`w-3 h-3 rounded-full shrink-0 ${member.entered ? 'bg-green-500' : 'bg-gray-500'}`} />
+                            <p className="text-white text-base md:text-lg font-semibold break-words">{member.fullName}</p>
+                            <span className="text-gray-500 text-[10px] md:text-xs">Member {member.index + 1}</span>
+                            {member.entered && (
+                              <span className="text-green-400 text-[10px] md:text-xs font-bold uppercase bg-green-900/30 px-2 py-0.5 md:py-1 rounded">✅ Entered</span>
+                            )}
                           </div>
-                        </div>
-                        <div className="w-full sm:w-auto">
-                          {!member.entered ? (
-                            <button
-                              onClick={() => handleMarkEntry('member', member.index)}
-                              disabled={actionLoading === key}
-                              className="bg-green-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs w-full sm:w-auto"
-                            >
-                              {actionLoading === key ? '...' : 'Mark Entry'}
-                            </button>
-                          ) : (
+                          <div className="space-y-0.5 text-xs md:text-sm">
+                            <p className="text-gray-400 break-all">📧 {member.email}</p>
+                            <p className="text-gray-400">📱 {member.phone}</p>
+                            <p className="text-gray-400 break-words">🏫 {member.college}</p>
+                          </div>
+                          {member.entered && (
                             <button
                               onClick={() => handleUndoEntry('member', member.index)}
                               disabled={actionLoading === key}
-                              className="bg-red-600/80 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs w-full sm:w-auto"
+                              className="text-red-400 hover:text-red-300 text-[10px] md:text-xs font-bold uppercase mt-1.5 disabled:opacity-50"
                             >
-                              {actionLoading === key ? '...' : 'Undo'}
+                              {actionLoading === key ? '...' : 'Undo Entry'}
                             </button>
                           )}
                         </div>
