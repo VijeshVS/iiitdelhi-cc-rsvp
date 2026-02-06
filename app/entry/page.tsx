@@ -434,9 +434,9 @@ export default function EntryPage() {
         {teamData && (
           <div className="space-y-6">
             {/* Summary Banner */}
-            <div className="bg-accent-gold rounded-lg p-6 text-center">
-              <p className="text-bg-dark text-sm font-bold uppercase mb-1">Team: {teamData.teamName}</p>
-              <p className="text-bg-dark text-xs font-mono mb-3">{teamData.passId}</p>
+            <div className="bg-accent-gold rounded-lg p-4 md:p-6 text-center">
+              <p className="text-bg-dark text-xs md:text-sm font-bold uppercase mb-1">Team: {teamData.teamName}</p>
+              <p className="text-bg-dark text-[10px] md:text-xs font-mono mb-2 md:mb-3">{teamData.passId}</p>
               <div className="inline-flex items-center gap-2 bg-bg-dark/20 rounded-full px-4 py-2">
                 <span className="text-bg-dark font-bold text-lg">
                   {totalEntered} / {totalMembers}
@@ -446,9 +446,9 @@ export default function EntryPage() {
             </div>
 
             {/* Bulk Action Bar */}
-            <div className="bg-surface-light border border-gray-700 rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <label className="flex items-center gap-2 cursor-pointer">
+            <div className="bg-surface-light border border-gray-700 rounded-lg p-3 md:p-4 flex flex-col gap-3">
+              <div className="flex items-center gap-2 md:gap-3">
+                <label className="flex items-center gap-2 cursor-pointer flex-1 min-w-0">
                   <input
                     type="checkbox"
                     checked={allPendingKeys.length > 0 && allPendingKeys.every(k => selected.has(k))}
@@ -462,28 +462,28 @@ export default function EntryPage() {
                     disabled={allPendingKeys.length === 0}
                     className="w-5 h-5 accent-accent-gold rounded"
                   />
-                  <span className="text-white text-sm font-medium">
+                  <span className="text-white text-xs md:text-sm font-medium truncate">
                     {allPendingKeys.length > 0 ? `Select All Pending (${allPendingKeys.length})` : 'All entered ✅'}
                   </span>
                 </label>
                 {selected.size > 0 && (
-                  <span className="text-accent-gold text-sm font-bold">
+                  <span className="text-accent-gold text-xs md:text-sm font-bold shrink-0">
                     {selected.size} selected
                   </span>
                 )}
               </div>
-              <div className="flex gap-3">
+              <div className="flex gap-2 md:gap-3 w-full">
                 <button
                   onClick={handleMarkSelected}
                   disabled={selected.size === 0 || actionLoading === 'bulk'}
-                  className="bg-green-600 text-white px-5 py-2.5 rounded-lg font-bold hover:bg-green-700 transition-all disabled:opacity-40 disabled:cursor-not-allowed uppercase text-sm whitespace-nowrap"
+                  className="bg-green-600 text-white px-3 md:px-5 py-2 md:py-2.5 rounded-lg font-bold hover:bg-green-700 transition-all disabled:opacity-40 disabled:cursor-not-allowed uppercase text-xs md:text-sm flex-1"
                 >
-                  {actionLoading === 'bulk' ? '...' : `Mark Selected (${selected.size})`}
+                  {actionLoading === 'bulk' ? '...' : `Mark (${selected.size})`}
                 </button>
                 <button
                   onClick={handleMarkAll}
                   disabled={allPendingKeys.length === 0 || actionLoading === 'bulk-all'}
-                  className="bg-accent-gold text-bg-dark px-5 py-2.5 rounded-lg font-bold hover:bg-accent-hover transition-all disabled:opacity-40 disabled:cursor-not-allowed uppercase text-sm whitespace-nowrap"
+                  className="bg-accent-gold text-bg-dark px-3 md:px-5 py-2 md:py-2.5 rounded-lg font-bold hover:bg-accent-hover transition-all disabled:opacity-40 disabled:cursor-not-allowed uppercase text-xs md:text-sm flex-1"
                 >
                   {actionLoading === 'bulk-all' ? '...' : 'Mark All Entry'}
                 </button>
@@ -491,46 +491,48 @@ export default function EntryPage() {
             </div>
 
             {/* All People List */}
-            <div className="bg-surface-light border border-gray-700 rounded-lg p-6">
-              <h3 className="text-accent-gold text-xl font-bold mb-4 uppercase">Team Members</h3>
+            <div className="bg-surface-light border border-gray-700 rounded-lg p-3 md:p-6">
+              <h3 className="text-accent-gold text-lg md:text-xl font-bold mb-3 md:mb-4 uppercase">Team Members</h3>
               <div className="space-y-3">
                 {/* Team Lead */}
                 {(() => {
                   const key = 'lead';
                   return (
-                    <div className={`bg-surface-dark border rounded-lg p-4 transition-all ${
+                    <div className={`bg-surface-dark border rounded-lg p-3 md:p-4 transition-all ${
                       selected.has(key) ? 'border-accent-gold' : 'border-gray-700'
                     }`}>
-                      <div className="flex items-center gap-4">
-                        {!teamData.entered && (
-                          <input
-                            type="checkbox"
-                            checked={selected.has(key)}
-                            onChange={(e) => toggleSelect(key, e.target.checked)}
-                            className="w-5 h-5 accent-accent-gold rounded shrink-0"
-                          />
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-3 mb-1 flex-wrap">
-                            <span className={`w-3 h-3 rounded-full shrink-0 ${teamData.entered ? 'bg-green-500' : 'bg-gray-500'}`} />
-                            <p className="text-white text-lg font-semibold">{teamData.teamLeadFullName}</p>
-                            <span className="text-accent-gold text-xs font-bold uppercase bg-accent-gold/10 px-2 py-0.5 rounded">Lead</span>
-                            {teamData.entered && (
-                              <span className="text-green-400 text-xs font-bold uppercase bg-green-900/30 px-2 py-1 rounded">Entered</span>
-                            )}
-                          </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-1 text-sm">
-                            <p className="text-gray-400 truncate">📧 {teamData.email}</p>
-                            <p className="text-gray-400">📱 {teamData.phone}</p>
-                            <p className="text-gray-400 truncate">🏫 {teamData.college}</p>
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4">
+                        <div className="flex items-start gap-3 flex-1 min-w-0 w-full">
+                          {!teamData.entered && (
+                            <input
+                              type="checkbox"
+                              checked={selected.has(key)}
+                              onChange={(e) => toggleSelect(key, e.target.checked)}
+                              className="w-5 h-5 accent-accent-gold rounded shrink-0 mt-1"
+                            />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1 flex-wrap">
+                              <span className={`w-3 h-3 rounded-full shrink-0 ${teamData.entered ? 'bg-green-500' : 'bg-gray-500'}`} />
+                              <p className="text-white text-base md:text-lg font-semibold break-words">{teamData.teamLeadFullName}</p>
+                              <span className="text-accent-gold text-[10px] md:text-xs font-bold uppercase bg-accent-gold/10 px-2 py-0.5 rounded">Lead</span>
+                              {teamData.entered && (
+                                <span className="text-green-400 text-[10px] md:text-xs font-bold uppercase bg-green-900/30 px-2 py-0.5 md:py-1 rounded">Entered</span>
+                              )}
+                            </div>
+                            <div className="space-y-0.5 text-xs md:text-sm">
+                              <p className="text-gray-400 break-all">📧 {teamData.email}</p>
+                              <p className="text-gray-400">📱 {teamData.phone}</p>
+                              <p className="text-gray-400 break-words">🏫 {teamData.college}</p>
+                            </div>
                           </div>
                         </div>
-                        <div className="shrink-0">
+                        <div className="w-full sm:w-auto">
                           {!teamData.entered ? (
                             <button
                               onClick={() => handleMarkEntry('lead')}
                               disabled={actionLoading === 'lead'}
-                              className="bg-green-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs whitespace-nowrap"
+                              className="bg-green-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs w-full sm:w-auto"
                             >
                               {actionLoading === 'lead' ? '...' : 'Mark Entry'}
                             </button>
@@ -538,7 +540,7 @@ export default function EntryPage() {
                             <button
                               onClick={() => handleUndoEntry('lead')}
                               disabled={actionLoading === 'lead'}
-                              className="bg-red-600/80 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs whitespace-nowrap"
+                              className="bg-red-600/80 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs w-full sm:w-auto"
                             >
                               {actionLoading === 'lead' ? '...' : 'Undo'}
                             </button>
@@ -555,40 +557,42 @@ export default function EntryPage() {
                   return (
                     <div
                       key={member.index}
-                      className={`bg-surface-dark border rounded-lg p-4 transition-all ${
+                      className={`bg-surface-dark border rounded-lg p-3 md:p-4 transition-all ${
                         selected.has(key) ? 'border-accent-gold' : 'border-gray-700'
                       }`}
                     >
-                      <div className="flex items-center gap-4">
-                        {!member.entered && (
-                          <input
-                            type="checkbox"
-                            checked={selected.has(key)}
-                            onChange={(e) => toggleSelect(key, e.target.checked)}
-                            className="w-5 h-5 accent-accent-gold rounded shrink-0"
-                          />
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-3 mb-1 flex-wrap">
-                            <span className={`w-3 h-3 rounded-full shrink-0 ${member.entered ? 'bg-green-500' : 'bg-gray-500'}`} />
-                            <p className="text-white text-lg font-semibold">{member.fullName}</p>
-                            <span className="text-gray-500 text-xs">Member {member.index + 1}</span>
-                            {member.entered && (
-                              <span className="text-green-400 text-xs font-bold uppercase bg-green-900/30 px-2 py-1 rounded">Entered</span>
-                            )}
-                          </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-1 text-sm">
-                            <p className="text-gray-400 truncate">📧 {member.email}</p>
-                            <p className="text-gray-400">📱 {member.phone}</p>
-                            <p className="text-gray-400 truncate">🏫 {member.college}</p>
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 md:gap-4">
+                        <div className="flex items-start gap-3 flex-1 min-w-0 w-full">
+                          {!member.entered && (
+                            <input
+                              type="checkbox"
+                              checked={selected.has(key)}
+                              onChange={(e) => toggleSelect(key, e.target.checked)}
+                              className="w-5 h-5 accent-accent-gold rounded shrink-0 mt-1"
+                            />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1 flex-wrap">
+                              <span className={`w-3 h-3 rounded-full shrink-0 ${member.entered ? 'bg-green-500' : 'bg-gray-500'}`} />
+                              <p className="text-white text-base md:text-lg font-semibold break-words">{member.fullName}</p>
+                              <span className="text-gray-500 text-[10px] md:text-xs">Member {member.index + 1}</span>
+                              {member.entered && (
+                                <span className="text-green-400 text-[10px] md:text-xs font-bold uppercase bg-green-900/30 px-2 py-0.5 md:py-1 rounded">Entered</span>
+                              )}
+                            </div>
+                            <div className="space-y-0.5 text-xs md:text-sm">
+                              <p className="text-gray-400 break-all">📧 {member.email}</p>
+                              <p className="text-gray-400">📱 {member.phone}</p>
+                              <p className="text-gray-400 break-words">🏫 {member.college}</p>
+                            </div>
                           </div>
                         </div>
-                        <div className="shrink-0">
+                        <div className="w-full sm:w-auto">
                           {!member.entered ? (
                             <button
                               onClick={() => handleMarkEntry('member', member.index)}
                               disabled={actionLoading === key}
-                              className="bg-green-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs whitespace-nowrap"
+                              className="bg-green-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs w-full sm:w-auto"
                             >
                               {actionLoading === key ? '...' : 'Mark Entry'}
                             </button>
@@ -596,7 +600,7 @@ export default function EntryPage() {
                             <button
                               onClick={() => handleUndoEntry('member', member.index)}
                               disabled={actionLoading === key}
-                              className="bg-red-600/80 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs whitespace-nowrap"
+                              className="bg-red-600/80 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs w-full sm:w-auto"
                             >
                               {actionLoading === key ? '...' : 'Undo'}
                             </button>
