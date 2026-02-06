@@ -62,7 +62,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm uppercase">Reporting Time</p>
-                  <p className="text-white font-semibold">9:00 AM</p>
+                  <p className="text-white font-semibold">9:30 AM - 10:30 AM</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -71,7 +71,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm uppercase">Timing</p>
-                  <p className="text-white font-semibold">10:00 AM - 4:00 PM</p>
+                  <p className="text-white font-semibold">10:30 AM - 5:00 PM</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -101,30 +101,115 @@ export default function Home() {
                   <p className="text-accent-gold font-bold text-xl">₹10,000</p>
                 </div>
               </div>
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-accent-gold/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-accent-gold">🌐</span>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm uppercase">Mode</p>
+                  <p className="text-white font-semibold">Offline</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Why RSVP Card */}
+          {/* Important Instructions */}
           <div className="bg-surface-light border border-gray-700 rounded-lg p-6">
-            <h2 className="text-accent-gold text-xl font-bold mb-6 uppercase">Why RSVP?</h2>
-            <ul className="space-y-3">
+            <h2 className="text-accent-gold text-xl font-bold mb-6 uppercase">Important Instructions</h2>
+            <ol className="space-y-3 list-none">
               <li className="flex items-start gap-3">
-                <span className="text-accent-gold text-lg">✓</span>
-                <span className="text-gray-300">Secure your spot at the event</span>
+                <span className="text-accent-gold font-bold shrink-0">1.</span>
+                <span className="text-gray-300">All ideas must be original.</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-accent-gold text-lg">✓</span>
-                <span className="text-gray-300">Get event updates via email</span>
+                <span className="text-accent-gold font-bold shrink-0">2.</span>
+                <span className="text-gray-300">Participants must carry their college ID cards.</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-accent-gold text-lg">✓</span>
-                <span className="text-gray-300">Fast-track entry on event day</span>
+                <span className="text-accent-gold font-bold shrink-0">3.</span>
+                <span className="text-gray-300">Travel, food, or stay allowances will not be provided by the organising team.</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-accent-gold text-lg">✓</span>
-                <span className="text-gray-300">Receive participation certificate</span>
+                <span className="text-accent-gold font-bold shrink-0">4.</span>
+                <span className="text-gray-300">Problem statements will be provided on-site.</span>
               </li>
-            </ul>
+              <li className="flex items-start gap-3">
+                <span className="text-accent-gold font-bold shrink-0">5.</span>
+                <span className="text-gray-300">Teams must strictly adhere to the event timeline.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-accent-gold font-bold shrink-0">6.</span>
+                <span className="text-gray-300">Any form of plagiarism or misconduct will result in immediate disqualification.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-accent-gold font-bold shrink-0">7.</span>
+                <span className="text-gray-300">The decision of the organising committee and judges will be final.</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        {/* Event Schedule */}
+        <div className="mt-8 bg-surface-light border border-accent-gold rounded-lg p-6">
+          <h2 className="text-accent-gold text-xl font-bold mb-6 uppercase text-center">Event Schedule</h2>
+          <div className="relative pl-6 space-y-0 max-w-lg mx-auto">
+            {/* Timeline line */}
+            <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-accent-gold/20" />
+
+            {/* Reporting */}
+            <div className="relative flex items-start gap-4 pb-5">
+              <div className="absolute left-[-17px] top-1.5 w-3 h-3 rounded-full bg-accent-gold/30 border-2 border-accent-gold" />
+              <div className="flex-1 bg-surface-dark border border-gray-700 rounded-lg px-4 py-3">
+                <p className="text-accent-gold text-xs font-mono font-bold tracking-wider">9:30 AM — 10:30 AM</p>
+                <p className="text-white font-semibold mt-0.5">Reporting &amp; Registration</p>
+              </div>
+            </div>
+
+            {/* Inauguration */}
+            <div className="relative flex items-start gap-4 pb-5">
+              <div className="absolute left-[-17px] top-1.5 w-3 h-3 rounded-full bg-accent-gold/30 border-2 border-accent-gold" />
+              <div className="flex-1 bg-surface-dark border border-gray-700 rounded-lg px-4 py-3">
+                <p className="text-accent-gold text-xs font-mono font-bold tracking-wider">10:30 AM — 11:00 AM</p>
+                <p className="text-white font-semibold mt-0.5">Inauguration</p>
+              </div>
+            </div>
+
+            {/* Ideathon */}
+            <div className="relative flex items-start gap-4">
+              <div className="absolute left-[-17px] top-1.5 w-3 h-3 rounded-full bg-accent-gold border-2 border-accent-gold shadow-[0_0_8px_rgba(249,221,156,0.5)]" />
+              <div className="flex-1 bg-accent-gold/5 border border-accent-gold/30 rounded-lg px-4 py-3">
+                <p className="text-accent-gold text-xs font-mono font-bold tracking-wider">11:00 AM — 5:00 PM</p>
+                <p className="text-white font-semibold mt-0.5">Ideathon 💡</p>
+                <p className="text-gray-500 text-xs mt-1">Main event — 6 hours of building &amp; pitching</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Venue Map */}
+        <div className="mt-8 bg-surface-light border border-gray-700 rounded-lg p-6">
+          <h2 className="text-accent-gold text-xl font-bold mb-4 uppercase text-center">📍 Venue Location</h2>
+          <div className="rounded-lg overflow-hidden border border-gray-700">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5965885498387!2d77.49633827484038!3d12.923710487390275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3e468d8b1fc7%3A0x1524e1e735a7a1c3!2sR.V.%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1707206400000!5m2!1sen!2sin"
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="RVCE Bangalore Location"
+            />
+          </div>
+          <div className="mt-3 text-center">
+            <a
+              href="https://maps.google.com/?q=R.V.+College+of+Engineering,+Bengaluru"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent-gold hover:text-accent-hover text-sm font-semibold inline-flex items-center gap-1"
+            >
+              Open in Google Maps →
+            </a>
           </div>
         </div>
 

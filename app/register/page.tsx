@@ -376,7 +376,7 @@ export default function RegisterPage() {
                   </div>
                   <div>
                     <p className="text-gray-400 text-xs uppercase">Reporting Time</p>
-                    <p className="text-white text-sm font-semibold">9:00 AM</p>
+                    <p className="text-white text-sm font-semibold">9:30 AM - 10:30 AM</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -385,7 +385,7 @@ export default function RegisterPage() {
                   </div>
                   <div>
                     <p className="text-gray-400 text-xs uppercase">Timing</p>
-                    <p className="text-white text-sm font-semibold">10:00 AM - 4:00 PM</p>
+                    <p className="text-white text-sm font-semibold">10:30 AM - 5:00 PM</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -413,6 +413,15 @@ export default function RegisterPage() {
                   <div>
                     <p className="text-gray-400 text-xs uppercase">Prize Pool</p>
                     <p className="text-accent-gold text-lg font-bold">₹10,000</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-accent-gold/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-accent-gold text-sm">🌐</span>
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-xs uppercase">Mode</p>
+                    <p className="text-white text-sm font-semibold">Offline</p>
                   </div>
                 </div>
               </div>
